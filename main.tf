@@ -1,18 +1,10 @@
-resource "aws_vpc" "my_tf_vpc" {
-    cidr_block = "10.0.0.0/16"
+resource "aws_instance" "ec2_example" {
 
-    tags = {
-        Name = "example_vpc"
-    }
-  
-}
+   ami           = "ami-03fa4afc89e4a8a09"
 
-resource "aws_subnet" "subnet1" {
-    vpc_id = aws_vpc.my_tf_vpc.id
-    cidr_block = "10.0.0.0/20"
+   instance_type =  var.instance_type
 
-    tags = {
-      Name = "example_subnet"
-    }
-  
+   tags = {
+           Name = var.environment_name
+   }
 }
